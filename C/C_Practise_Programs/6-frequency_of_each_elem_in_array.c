@@ -1,22 +1,20 @@
 #include<stdio.h>
 #define SIZE 10
-void freq(int arr[],int len)
+void freq(int arr[],int len)//  1 2 3 4 -1 2 3
 {
 	for(int i=0;i<len;i++)
 	{
-		if(arr[i]>0)
-		{
+		
 			int count=1;
 			for(int j=i+1;j<len;j++)
 			{
 				if(arr[i]==arr[j])
 				{
 					count++;
-					arr[j]=-1;
+					arr[j]='*';
 				}
 			}
-			printf("%d element's frequency is %d\n",arr[i],count);
-		}	
+			printf("%d element's frequency is %d\n",arr[i],count);	
 	}
 }
 int main()

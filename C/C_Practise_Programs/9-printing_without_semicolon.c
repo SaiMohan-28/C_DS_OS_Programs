@@ -1,6 +1,11 @@
 #include<stdio.h>
-int main()
+int _start()
 {
 	while(printf("Hello world\n"))
+	if(printf("Hello World\n"))
 	return 0;
 }
+
+
+
+

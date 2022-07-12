@@ -1,6 +1,6 @@
 #include<stdio.h>
 #define S 10
-int rev(int s[], int len)
+void rev(int s[], int len)
 {
 	int i,j,temp;
 	for(i=0,j=len-1;i<j;i++,j--)
@@ -20,7 +20,7 @@ int main()
 	{
 		scanf("%d",&arr[i]);
 	}
-	int (*fp)(int[],int)=rev;
+	void (*fp)(int[],int)=rev;
 	fp(arr,n);
 	printf("After Reverse\n");
 	for(int i=0;i<n;i++)

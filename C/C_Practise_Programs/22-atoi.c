@@ -12,7 +12,7 @@ int isnumeric(char s[])
 {
 	for(int i=0;s[i]!='\0';i++)
 	{
-		if(s[i]>=48&& s[i]<=56)
+		if(s[i]>=48 && s[i]<=56)
 		continue;
 		else
 		return 1;
@@ -22,11 +22,16 @@ int isnumeric(char s[])
 int main()
 {
 	char s[10];
+	int temp;
 	printf("Enter String\n");
 	scanf("%s",s);
 	if(isnumeric(s)==0)
-	printf("%d\n",my_atoi(s));
+	{
+	temp=my_atoi(s);
+	
+	printf("%d\n",temp);
+	}
 	else
-	printf("0\n");
+	printf("Cant convert to integer it contains characters \n");
 	return 0;
 }
