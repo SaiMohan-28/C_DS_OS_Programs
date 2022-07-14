@@ -6,9 +6,9 @@ typedef struct LL
 	struct LL *next;
 }ll;
 void create(ll **,ll **);
-void insert_at_a_node();
-void insert_before_node();
-void insert_after_node();
+void insert_at_a_node(ll **);
+void insert_before_node(ll **);
+void insert_after_node(ll **);
 void delete_head();
 void delete_particular_node();
 void delete_last_node();
@@ -18,6 +18,7 @@ void loop();
 void maximum();
 void search();
 void display(ll **);
+void insert_at_head(ll **);
 void sort();
 
 
@@ -42,42 +43,107 @@ void create(ll **head,ll **tail)
 	n--;
 	}
 }
-void insert_at_a_node(ll *head)
+void insert_at_a_node(ll **head)
 {
-	printf("\nInserting At A Node\n");
-	int data,pos,i=1;
-	printf("Enter Position\n");
-	scanf("%d",&pos);
-	printf("Enter Data\n");
-	scanf("%d",&data);
-	ll *new=NULL;
-	if(pos==1)
+	if((*head)==NULL)
 	{
-		new=(ll *)malloc(sizeof(ll));
-		new->data=data;
-		new->next=(*head);
-		(*head)=new;
+		printf("List is Empty\n");
+		return ;
 	}
 	else
 	{
+		printf("\nInserting At A Node\n");
+		int data,pos,i=1;
+		printf("Enter Position\n");
+		scanf("%d",&pos);
+		printf("Enter Data\n");
+		scanf("%d",&data);
+		ll *new=NULL;
+		ll *temp=(*head);
 		while(i<pos)
 		{
-			ll *temp=(*head);
-			temp=temp->next;
+			temp=temp->next;	
 			i++;
 		}
-		ll *new=(ll *)malloc(sizeof(ll));
-		temp-
+		new=(ll *)malloc(sizeof(ll));
+		new->data=data;
+		new->next=temp->next;
+		temp->next=new;
 	}
 	
 }
-void insert_before_node()
+void insert_at_head(ll **head)
 {
-	printf("\nInsert Before Node\n");
+	if((*head)==NULL)
+	{
+		printf("List is Empty\n");
+		return;
+	}
+	else
+	{
+		printf("Inserting at Head Node\n");
+		int data;
+		printf("Enter Data\n");
+		scanf("%d",&data);
+		ll *new=NULL;
+		new=(ll *)malloc(sizeof(ll));
+		new->data=data;
+		new->next=(*head);
+		(*head)=new;	
+	}
 }
-void insert_after_node()
+void insert_before_node(ll **head)
 {
-	printf("\nInsert After Node\n");
+	
+	if((*head)==NULL)
+	{
+		printf("List is Empty\n");
+		return;
+	}
+	else
+	{
+		printf("\nInsert Before Node\n");
+		int data,pos;
+		printf("Enter data\n");
+		scanf("%d",&data);
+		printf("Enter Position\n");
+		scanf("%d",&pos);
+		ll *new=NULL,*temp=(*head);
+		while(temp->next->data!=pos)
+		{
+			temp=temp->next;
+		}	
+		new = (ll *)malloc(sizeof(ll));
+		new->data=data;
+		new->next=temp->next;
+		temp->next=new;
+	}
+}
+void insert_after_node(ll **head)
+{
+	if((*head)==NULL)
+	{
+		printf("List is Empty\n");
+		return ;
+	}
+	else
+	{	
+		printf("\nInsert After Node\n");
+		int data,pos;
+		printf("Enter Data\n");
+		scanf("%d",&data);
+		printf("Enter Position\n");
+		scanf("%d",&pos);
+		ll *new=NULL,*temp=(*head);
+		while(temp->data!=pos)
+		{
+			temp=temp->next;
+		}
+		new=(ll *)malloc(sizeof(ll));
+		new->data=data;
+		new->next=temp->next;
+		temp->next=new;
+	}
 }
 void delete_head()
 {
@@ -131,7 +197,7 @@ int main()
 	ll *head=NULL,*tail=NULL;
 	while(1)
 	{
-		printf("\n\nEnter Option\n\n1.Create\n2.Insert at a Node\n3.Insert Before Node\n4.Insert After Node\n5.Delete head\n6.Delete Particular Node\n7.Delete Last Node\n8.Reverse\n9.Middle Element\n10.Loop\n11.Maximum\n12.Search\n13.Display\n14.Sort\n15.Exit\n\n");
+		printf("\n\nEnter Option\n\n1.Create\n2.Insert at a Node\n3.Insert Before Node\n4.Insert After Node\n5.Delete head\n6.Delete Particular Node\n7.Delete Last Node\n8.Reverse\n9.Middle Element\n10.Loop\n11.Maximum\n12.Search\n13.Display\n14.Sort\n15.Insert at Head\n16.Exit\n\n");
 	scanf("%d",&option);
 	switch(option)
 	{
@@ -139,9 +205,9 @@ int main()
 			break;
 		case 2: insert_at_a_node(&head);
 			break;
-		case 3: insert_before_node();
+		case 3: insert_before_node(&head);
 			break;
-		case 4: insert_after_node();
+		case 4: insert_after_node(&head);
 			break;
 		case 5: delete_head();
 			break;
@@ -163,7 +229,9 @@ int main()
 			 break;
 		case 14: sort();
 			 break;
-		case 15: exit(1);
+		case 15: insert_at_head(&head);
+			 break;	 
+		case 16: exit(1);
 		default:printf("!!!Sorry Try Again!!!\n");	 	 	 	 										
 	}
 	}
